@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancong Byte's | By Ganesh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0A1128;         
+            --bg-card: #111B35;         
+            --accent-cream: #F4EFEB;    
+            --accent-gold: #DFBA73;     
+            --pure-white: #FFFFFF;
+            --soft-text: #94A3B8;      
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--accent-cream);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 10%;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: rgba(10, 17, 40, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 10%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--pure-white);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--soft-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--pure-white);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--pure-white);
+            transition: all 0.3s ease;
+        }
+
+        #home {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(10, 17, 40, 0.7), rgba(10, 17, 40, 0.95)), 
+                              url('https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--pure-white);
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            color: var(--accent-gold);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--soft-text);
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .btn-gold:hover {
+            background-color: #ecc985;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--pure-white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 100px 10% 80px 10%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--pure-white);
+        }
+
+        .section-line {
+            width: 40px;
+            height: 1.5px;
+            background: var(--accent-gold);
+            margin: 15px auto 0 auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(223, 186, 115, 0.2);
+        }
+
+        .menu-img-container {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .menu-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu-rating {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(10, 17, 40, 0.85);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .menu-body {
+            padding: 22px;
+        }
+
+        .menu-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--pure-white);
+            margin-bottom: 8px;
+        }
+
+        .menu-desc {
+            color: var(--soft-text);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            height: 45px;
+            overflow: hidden;
+        }
+
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 15px;
+        }
+
+        .menu-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        .btn-order {
+            background-color: transparent;
+            color: var(--accent-cream);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-order:hover {
+            background-color: var(--accent-cream);
+            color: var(--bg-dark);
+            border-color: var(--accent-cream);
+        }
+
+        /* Footer & Contact Section */
+        footer {
+            background-color: #050A18;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 80px 10% 40px 10%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.2fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--pure-white);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo h3 span {
+            color: var(--accent-gold);
+        }
+
+        .footer-logo p {
+            color: var(--soft-text);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pure-white);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background-color: var(--accent-cream);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-info h4, .footer-map h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--pure-white);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-info h4::after, .footer-map h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 1.5px;
+            background-color: var(--accent-gold);
+        }
+
+        .info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-list li {
+            color: var(--soft-text);
+            font-size: 0.85rem;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            line-height: 1.5;
+        }
+
+        .info-list li i {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            margin-top: 3px;
+        }
+
+        .map-wrapper {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            height: 180px;
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            color: var(--soft-text);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 991px) {
+            header { padding: 20px 5%; }
+            .hero-title { font-size: 2.8rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            .nav-menu {
+                position: fixed;
+                top: -100vh;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 17, 40, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding: 100px 0 40px 0;
+                gap: 25px;
+                transition: all 0.4s ease;
+                z-index: 99;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .nav-menu.active { top: 0; }
+            .hero-title { font-size: 2.2rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            section { padding: 80px 5% 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-logo">Pancong <span>Byte's</span></div>
+        <div class="loader-line"></div>
+    </div>
+
+    <!-- HEADER & NAVBAR -->
+    <header id="navbar">
+        <a href="#home" class="logo">Pancong <span>Byte’s.</span></a>
+        
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+            <!-- Hamburger Button (Mobile) -->
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Pancong Premium<br>dengan <span>Rasa Elegan.</span></h1>
+            <p class="hero-subtitle">Hangat, Lumer, dan dibuat fresh setiap hari langsung dari resep riset dapur kami.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-gold">Lihat Menu</a>
+                <a href="#contact" class="btn btn-outline">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION (6 BEST SELLER) -->
+    <section id="menu">
+        <div class="section-header">
+            <span class="section-tag">Premium Collection</span>
+            <h2 class="section-title">Menu Favorit</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="menu-grid">
+            <!-- Item 1 -->
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600" alt="[Pancong Matcha Glaze]">
+                    <div class="menu-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+                </div>
+                <div class="menu-body">
+                    <h3 class="menu-title">Pancong Matcha Glaze</h3>
+                    <p class="menu-desc">Saus matcha Jepang premium yang lumer berpadu dengan gurih lembut adonan pancong.</p>
+                    <div class="menu-footer">
+                        <span class="menu-price">Rp 18.000</span>
+                        <a href="https://wa.me/6281252958454?text=Halo%20Pancong%20Byte%27s%2C%20saya%20ingin%20memesan%20Pancong%20Matcha%20Glaze%20Satu." target="_blank" class="btn-order">
+                            Pesan via WA
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=600" alt="[Pancong Lotus Biscoff]">
+                    <div class="menu-rating"><i class="fa-solid fa-star"></i> 5.0</div>
+                </div>
+                <div class="menu-body">
+                    <h3 class="menu-title">Pancong Lotus Biscoff</h3>
+                    <p class="menu-desc">Karamel Biscoff yang harum berlimpah renyah remahan biskuit legendaris Belgia.</p>
+                    <div class="menu-footer">
+                        <span class="menu-price">Rp 22.000</span>
+                        <a href="https://wa.me/6281252958454?text=Halo%20Pancong%20Byte%27s%2C%20saya%20ingin%20memesan%20Pancong%20Lotus%20Biscoff%20Satu." target="_blank" class="btn-order">
+                            Pesan via WA
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <img src="https://images.unsplash.com/photo-1612203985729-70726954388c?auto=format&fit=crop&q=80&w=600" alt="[Pancong Red Velvet]">
+                    <div class="menu-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+                </div>
+                <div class="menu-body">
+                    <h3 class="menu-title">Pancong Red Velvet</h3>
+                    <p class="menu-desc">Adonan coklat merah beludru yang lembut dan lumer bertabur krim keju gurih.</p>
+                    <div class="menu-footer">
+                        <span class="menu-price">Rp 20.000</span>
+                        <a href="https://wa.me/6281252958454?text=Halo%20Pancong%20Byte%27s%2C%20saya%20ingin%20memesan%20Pancong%20Red%20Velvet%20Satu." target="_blank" class="btn-order">
+                            Pesan via WA
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="[Pancong Oreo Melt]">
+                    <div class="menu-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+                </div>
+                <div class="menu-body">
+                    <h3 class="menu-title">Pancong Oreo Melt</h3>
+                    <p class="menu-desc">Lelehan coklat putih manis berlimpah remahan biskuit coklat Oreo yang renyah.</p>
+                    <div class="menu-footer">
+                        <span class="menu-price">Rp 16.000</span>
+                        <a href="https://wa.me/6281252958454?text=Halo%20Pancong%20Byte%27s%2C%20saya%20ingin%20memesan%20Pancong%20Oreo%20Melt%20Satu." target="_blank" class="btn-order">
+                            Pesan via WA
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600" alt="[Pancong Choco Lava]">
+                    <div class="menu-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+                </div>
+                <div class="menu-body">
+                    <h3 class="menu-title">Pancong Choco Lava</h3>
+                    <p class="menu-desc">Saus coklat pekat murni yang meleleh sempurna bagaikan lava dari tengah pancong.</p>
+                    <div class="menu-footer">
+                        <span class="menu-price">Rp 15.000</span>
+                        <a href="https://wa.me/6281252958454?text=Halo%20Pancong%20Byte%27s%2C%20saya%20ingin%20memesan%20Pancong%20Choco%20Lava%20Satu." target="_blank" class="btn-order">
+                            Pesan via WA
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <img src="https://images.unsplash.com/photo-1551443874-8d2a6a57d341?auto=format&fit=crop&q=80&w=600" alt="[Pancong Original]">
+                    <div class="menu-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+                </div>
+                <div class="menu-body">
+                    <h3 class="menu-title">Pancong Original</h3>
+                    <p class="menu-desc">Adonan klasik gurih manis santan asli dengan aroma wangi kelapa panggang alami.</p>
+                    <div class="menu-footer">
+                        <span class="menu-price">Rp 12.000</span>
+                        <a href="https://wa.me/6281252958454?text=Halo%20Pancong%20Byte%27s%2C%20saya%20ingin%20memesan%20Pancong%20Original%20Satu." target="_blank" class="btn-order">
+                            Pesan via WA
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & FOOTER SECTION -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <!-- Deskripsi & Sosmed Asli -->
+            <div class="footer-logo">
+                <h3>Pancong <span>Byte’s</span></h3>
+                <p>Menghadirkan sensasi dessert pancong premium lumer di Indonesia. Dirancang sederhana, dinikmati secara elegan lewat riset formula rasa terbaik.</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com/gnsh.maulana" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@vriesss_" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/6281252958454" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Informasi Kontak -->
+            <div class="footer-info">
+                <h4>Informasi Outlet</h4>
+                <ul class="info-list">
+                    <li><i class="fa-solid fa-location-dot"></i> Jl. City Side Residence No. 10, Malang, Jawa Timur</li>
+                    <li><i class="fa-solid fa-clock"></i> Jam Operasional:<br>Setiap Hari (10:00 - 21:30 WIB)</li>
+                    <li><i class="fa-solid fa-envelope"></i> pancongbytesbyganesh@gmail.com</li>
+                    <li><i class="fa-solid fa-phone"></i> +62 812-5295-8454</li>
+                </ul>
+            </div>
+            <div class="footer-map">
+                <h4>Lokasi Kami</h4>
+                <div class="map-wrapper">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.213824248405!2d112.6133465741639!3d-7.97682397952445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788280fd2ebcf1%3A0x63fe27e997f0a6c!2sUniversitas%20Merdeka%20Malang!5e0!3m2!1sid!2sid!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pancong Byte's Premium Dessert. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC (ANIMASI & NAVIGATION MENU) -->
+    <script>
+        /* Loader Screen Controller */
+        window.addEventListener("load", function() {
+            const loader = document.getElementById("loader");
+            loader.style.opacity = "0";
+            setTimeout(() => {
+                loader.style.visibility = "hidden";
+            }, 600);
+        });
+
+        /* Scroll Active Nav & Background Changer */
+        window.addEventListener("scroll", function() {
+            const navbar = document.getElementById("navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+            
+            const sections = document.querySelectorAll("section, footer");
+            const navLinks = document.querySelectorAll(".nav-menu a");
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 120) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+        /* Mobile Hamburger Toggle */
+        function toggleMobileMenu() {
+            const menu = document.getElementById("nav-menu");
+            menu.classList.toggle("active");
+        }
+
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                document.getElementById("nav-menu").classList.remove("active");
+            });
+        });
+    </script>
+</body>
+</html>
